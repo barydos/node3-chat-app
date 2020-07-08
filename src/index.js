@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const http = require('http')
 const socketio = require('socket.io')
+const Filter = require('bad-words')
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
 
 // Setup App
@@ -19,11 +20,18 @@ app.use(express.static(publicDirectoryPath))
 io.on('connection', (socket) => {
     console.log('New WebSocket connection!')
     
-    socket.emit('message', generateMessage('Welcome!'))
-    socket.broadcast.emit('message', generateMessage('A new user has joined!'))
-
-    socket.on('message',(msg, callback) => {
-        io.emit('message', generateMessage(msg)) 
+    socket.on('join', ({username, room}) => {
+        socket.join(room)
+        socket.emit('message', generateMessage('Welcome!'))
+        socket.broadcast.to(room).emit('message', generateMessage(`${username} has joined!`))
+    })
+    socket.on('sendMessage',(msg, callback) => {
+        const filter = new Filter()
+        if (filter.isProfane(msg)) {
+            return callback("Profanity is not allowed.")
+        }
+        
+        io.to('Room1').emit('message', generateMessage(msg)) 
         callback()
     })
 

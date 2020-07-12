@@ -41,25 +41,15 @@ const getUser = ((id) => {
 const getUsersInRoom = ((room) => {
     return users.filter((user) => user.room.toLowerCase() === room.toLowerCase())
 })
-// const user1 = {
-//     id:1,
-//     username: "one",
-//     room: "melb"
-// }
 
-// const user2 = {
-//     id:2,
-//     username: "two",
-//     room: "melb"
-// }
-// addUser(user1)
-// addUser(user2)
-// console.log(getUser({ id: 1 }))
-// console.log(users)
-// console.log(removeUser(1))
+const getRooms = () => {
+    return [ ... new Set(users.map(user => user.room))]
+}
+
 module.exports = {
     addUser,
     removeUser,
     getUser,
-    getUsersInRoom
+    getUsersInRoom,
+    getRooms
 }

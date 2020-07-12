@@ -16,8 +16,29 @@
                     <label for="room">Room</label>
                     <input type="text" id="room" name="room" required>
                     <button>Join</button>
+
+                    
+                    
+                    <div class="centered-rooms-form">
+                        <div id="index-rooms"></div>
+                    </div>
                 </form>
             </div>
         </div>
+
+        <script id="index-rooms-template", type="text/html">
+            <h2>{{roomsMessage}}</h2>
+            <ul class="centered-rooms-list">
+                {{#rooms}}
+                    <li>{{.}}</li>
+                {{/rooms}}
+            </ul>
+        </script>
+    
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="/js/home.js"></script>
     </body>
+
+    
 </html>

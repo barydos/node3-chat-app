@@ -4,6 +4,7 @@ const addUser = (({id, username, room}) => {
     // Clean the data
     cleanUsername = username.trim().toLowerCase()
     room = room.trim().toLowerCase()
+    // cleanRoom = room.trim().toLowerCase()
 
     // Validate the data
     if (!cleanUsername || !room) {
@@ -19,30 +20,26 @@ const addUser = (({id, username, room}) => {
         }
     }
 
-    const user = {id, username, room }
-    users.push(user )
+    const user = { id, username, room }
+    users.push( user )
     return { user }
 })
 
 
-const removeUser = ((id) => {
+const removeUser = (id) => {
     const userIndex = users.findIndex(user => user.id === id)
     
-    if (userIndex == -1) {
-        return {
-            error: "User does not exist."
-        }
+    if (userIndex !== -1) {
+        return users.splice(userIndex,1)[0]
     }
-    
-    return users.splice(userIndex,1)[0]
-})
+}
 
 const getUser = ((id) => {
     return users.find( user => user.id == id)
 })
 
 const getUsersInRoom = ((room) => {
-    return users.filter((user) => user.room.toLowerCase() == room.toLowerCase())
+    return users.filter((user) => user.room.toLowerCase() === room.toLowerCase())
 })
 // const user1 = {
 //     id:1,

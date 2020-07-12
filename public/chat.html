@@ -22,7 +22,7 @@
                 <div id="messages" class="chat__messages"></div>
                 <div class="compose">
                     <form class="form-data">
-                        <input name="message" placeholder="Enter text"> <button>Submit</button>
+                        <input name="message" placeholder="Enter text" required autocomplete="off"> <button>Submit</button>
                     </form>
                     <button id="location-data">Send location</button>
                 </div>
@@ -32,7 +32,7 @@
         <script id="message-template" type="text/html">
             <div class="message">
                 <p>
-                    <span class="message__name">Username</span>
+                    <span class="message__name">{{username}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                     <p>{{message}}</p>
                 </p>
@@ -42,7 +42,7 @@
         <script id="location-message-template" type="text/html">
             <div class="message">
                 <p>
-                    <span class="message__name">Username</span>
+                    <span class="message__name">{{username}}</span>
                     <span class="message__meta">{{createdAt}}</span>
                 </p>
                 <p><a target="_blank" href="{{url}}">My current location</a></p>

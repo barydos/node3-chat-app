@@ -124,7 +124,7 @@ button:disabled {
     height: 100vh;
     color: white;
     background: #333744;
-    width: 225px;
+    width: 15vw;
     overflow-y: scroll
 }
 
@@ -141,6 +141,7 @@ button:disabled {
     flex-grow: 1;
     padding: 24px 24px 0 24px;
     overflow-y: scroll;
+    max-width: 85vw;
 }
 
 /* Message Styles */
